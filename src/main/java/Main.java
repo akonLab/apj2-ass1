@@ -1,4 +1,5 @@
 import task1.Rename;
+import task1.Task1Controller;
 import task2.Item;
 import task2.Task2Controller;
 
@@ -13,24 +14,26 @@ public class Main {
 
         //task2
         //search bu file.name
+
         String input = "pdf the a text 1";
         System.out.println("input is '" + input + "'\n");
 
-        Task2Controller contr = new Task2Controller(input);
-        contr.start();
+        //Task2Controller contr = new Task2Controller(input);
+        //contr.start();
+
+        File folder1 = new File("src/main/filesForTask1");
+        for (String str:folder1.list()){
+            System.out.println(str);
+        }
         // contr.getCount(input);
 
 
-        //search in txt
-        //  new Search(new Item(new File("src/main/filesForTask2/article_1.txt"))).readTxt("the a".trim());
-/*
-        ExecutorService executor = Executors.newCachedThreadPool();
-        int count=1;
-        for (File file : Objects.requireNonNull(new File("src/main/filesForTask1").listFiles())) {
-            executor.execute(new Rename(file,count));
-            count++;
-        }
- */
+        //task1
+ /*
+        Task1Controller task1Controller=new Task1Controller();
+        task1Controller.makeNumStr();
+        task1Controller.check();
+*/
 
     }
 }

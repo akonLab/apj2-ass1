@@ -1,12 +1,6 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: adaada
-  Date: 12/27/20
-  Time: 20:18
-  To change this template use File | Settings | File Templates.
---%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@include file="lib/header.jsp"%>
+<%@include file="lib/header.jsp" %>
 
 <div class="box mx-auto my-5">
     <h3 class="text-center">Happy New Year</h3>
@@ -24,11 +18,18 @@
 
         <h4 class="text-center">Folder File List:</h4>
         <ul class="mx-auto">
+
+            <c:forEach items="${folder1.list()}" var="file">
+                <li>${file}</li>
+                <li><c:out value="${file}"/></li>
+            </c:forEach>
+
+            <li>AKon</li>
+            <li>aray</li>
+            <li>n</li>
             <li>Name</li>
-            <li>Name</li>
-            <li>Name</li>
-            <li>Name</li>
-            <li>Name</li>
+            <li><%="file.getName()"%></li>
+
         </ul>
 
         <a class="btn mx-auto">
@@ -62,7 +63,6 @@
             </thead>
 
             <tbody>
-            <c:if test="${all!=null}">
                 <c:forEach items="${all}" var="book">
                     <tr>
                         <td>
@@ -72,28 +72,11 @@
                             count
                         </td>
                     </tr>
-                    <tr>
-                        <td>
-                            file name
-                        </td>
-                        <td>
-                            count
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            file name
-                        </td>
-                        <td>
-                            count
-                        </td>
-                    </tr>
                 </c:forEach>
-            </c:if>
             </tbody>
 
         </table>
     </div>
 
 </div>
-<%@include file="lib/footer.jsp"%>
+<%@include file="lib/footer.jsp" %>

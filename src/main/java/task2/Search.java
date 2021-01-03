@@ -20,7 +20,8 @@ public class Search extends Thread {
         if (item.getFile().getName().substring(item.getFile().getName().lastIndexOf('.') + 1).equals("txt")) {//if txt
             item.setCountWordsFromPhrase(searchWordsFromInput());
             item.setCount(searchStringInText(input) + searchFileName() + sumValues());
-
+            System.out.println(item.getFile().getName() + countWordsFromPhrase);
+            System.out.println(item.getCount());
         } else {
             item.setCount(searchFileName());
         }
@@ -29,11 +30,10 @@ public class Search extends Thread {
     private Integer sumValues() {
         int count = 0;
 
-        if (item.getCountWordsFromPhrase() != null) {
-            for (Integer num : item.getCountWordsFromPhrase().values()) {
+        if (item.getCountWordsFromPhrase() != null)
+            for (Integer num : item.getCountWordsFromPhrase().values())
                 count += num;
-            }
-        }
+
         return count;
     }
 
@@ -85,7 +85,6 @@ public class Search extends Thread {
                     }
                 }
             }
-            // System.out.println("Count of " + input + " : " + count);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -101,7 +100,6 @@ public class Search extends Thread {
                 countWordsFromPhrase.put(str, searchStringInText(str));
             }
         }
-        //System.out.println(countWordsFromPhrase);
         return countWordsFromPhrase;
     }
 

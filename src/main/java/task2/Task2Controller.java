@@ -21,6 +21,10 @@ public class Task2Controller {
         items = new ArrayList<>();
     }
 
+    public File getFolder2() {
+        return folder2;
+    }
+
     public void start() {
         for (File file : Objects.requireNonNull(folder2.listFiles())) {
             items.add(new Item(file));
@@ -29,17 +33,15 @@ public class Task2Controller {
         if (executor.isShutdown()) {
             sort();
         }
-
-
     }
 
     private void startThread() {
         for (Item item : items) {
             executor.execute(new Search(item, input));
-        }if (!executor.isTerminated()){
+        }
+        if (!executor.isTerminated()) {
             executor.shutdownNow();
         }
-
     }
 
     private void sort() {
