@@ -15,15 +15,15 @@ public class Servlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String action = req.getAttribute("action").toString();
-
+        //String action = req.getAttribute("action").toString();
+/*
         if (action.equals("search")) {
             String input = req.getAttribute("input").toString();
             task2Contr = new Task2Controller(input);
 
         } else {
 
-        }
+        }*/
         req.setAttribute("folder1", folder1.list());
         req.setAttribute("folder2", folder2.list());
 

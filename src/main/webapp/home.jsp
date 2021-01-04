@@ -1,3 +1,4 @@
+<%@ page import="java.io.File" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@include file="lib/header.jsp" %>
@@ -23,10 +24,21 @@
                 <li>${file}</li>
                 <li><c:out value="${file}"/></li>
             </c:forEach>
-
+            <>
             <li>AKon</li>
             <li>aray</li>
             <li>n</li>
+            <%
+                String str="";
+                File folder2 = new File("src/main/filesForTask2");
+                for (File file : folder2.listFiles()) {
+            %>
+            <%str=file.getName();%>
+            <%=str%>
+            <%
+                }
+            %>
+
             <li>Name</li>
             <li><%="file.getName()"%>
             </li>
@@ -44,7 +56,7 @@
             <form action="${pageContext.request.contextPath}/serv1?action=search" method="GET">
 
                 <div class="user-box mx-auto d-flex justify-content-center">
-                    <input type="text" name="input" >
+                    <input type="text" name="input">
                     <input type="submit">
                 </div>
 

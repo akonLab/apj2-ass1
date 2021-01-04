@@ -17,7 +17,7 @@ public class Search extends Thread {
 
     @Override
     public synchronized void run() {
-        if (item.getFile().getName().substring(item.getFile().getName().lastIndexOf('.')+1).equals("txt")) {//if txt
+        if (item.getFile().getName().substring(item.getFile().getName().lastIndexOf('.') + 1).equals("txt")) {//if txt
             item.setCountWordsFromPhrase(searchWordsFromInput());
             item.setCount(searchStringInText(input) + searchFileName() + sumValues());
 

@@ -2,7 +2,7 @@ package task1;
 
 import java.io.File;
 
-public class Rename extends Task1Controller implements Runnable {
+public class Rename extends Thread{
     private final Integer count;
     private final File file;
 

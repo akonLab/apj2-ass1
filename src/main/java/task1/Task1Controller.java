@@ -8,6 +8,7 @@ import java.util.concurrent.Executors;
 
 public class Task1Controller {
     private final ArrayList<File> files = new ArrayList<>();
+    private final ArrayList<Thread> threads = new ArrayList<>();
     private final File folder1 = new File("src/main/filesForTask1");
     private String nums = "";
     private final ExecutorService executor = Executors.newCachedThreadPool();
@@ -51,7 +52,7 @@ public class Task1Controller {
         return false;
     }
 
-    private void startRename() {
+    private synchronized void startRename() {
         if (nums.trim().length() > 1) {
             String[] str = nums.split(" ");
             int count = 0;
@@ -61,6 +62,8 @@ public class Task1Controller {
                 count++;
             }
             executor.shutdown();
+
+
         } else if (nums.trim().length() == 1) {
             new Rename(files.get(0), Integer.parseInt(nums.trim()));
         }

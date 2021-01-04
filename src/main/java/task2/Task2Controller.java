@@ -26,6 +26,7 @@ public class Task2Controller {
             for (Item item : items) {
                 System.out.println(item.getFile().getName() + " have count " + item.getCount());
             }
+            sort();
         }
 
     }
@@ -45,7 +46,7 @@ public class Task2Controller {
     }
 
     private void sort() {
-        items.sort(new CountComparator());
+       items.sort(new CountComparator());
         for (Item item : items) {
             System.out.println(item.getFile().getName() + " have count " + item.getCount());
             System.out.println(item.getCountWordsFromPhrase());
