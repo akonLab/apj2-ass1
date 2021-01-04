@@ -19,7 +19,7 @@
         <h4 class="text-center">Folder File List:</h4>
         <ul class="mx-auto">
 
-            <c:forEach items="${folder1.list()}" var="file">
+            <c:forEach items="${folder1}" var="file">
                 <li>${file}</li>
                 <li><c:out value="${file}"/></li>
             </c:forEach>
@@ -28,7 +28,8 @@
             <li>aray</li>
             <li>n</li>
             <li>Name</li>
-            <li><%="file.getName()"%></li>
+            <li><%="file.getName()"%>
+            </li>
 
         </ul>
 
@@ -40,13 +41,11 @@
     <div id="task2">
         <div class="mx-auto mb-3">
 
-            <form action="" method="GET">
+            <form action="${pageContext.request.contextPath}/serv1?action=search" method="GET">
 
                 <div class="user-box mx-auto d-flex justify-content-center">
-                    <input placeholder="Books" type="text" name="book" required="">
-                    <a onclick="searchUser()">
-                        <i class='fas fa-search'></i>
-                    </a>
+                    <input type="text" name="input" >
+                    <input type="submit">
                 </div>
 
             </form>
@@ -63,16 +62,26 @@
             </thead>
 
             <tbody>
-                <c:forEach items="${all}" var="book">
-                    <tr>
-                        <td>
-                            file name
-                        </td>
-                        <td>
-                            count
-                        </td>
-                    </tr>
-                </c:forEach>
+            <c:forEach items="${folder2}" var="file">
+                <tr>
+                    <td>
+                            ${file}
+                    </td>
+                    <td>
+                        count
+                    </td>
+                </tr>
+            </c:forEach>
+            <c:forEach items="${folder2}" var="file">
+                <tr>
+                    <td>
+                            ${file}
+                    </td>
+                    <td>
+                        count
+                    </td>
+                </tr>
+            </c:forEach>
             </tbody>
 
         </table>

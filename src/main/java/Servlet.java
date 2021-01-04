@@ -11,26 +11,29 @@ import java.io.IOException;
 public class Servlet extends HttpServlet {
     File folder2 = new File("src/main/filesForTask2");
     File folder1 = new File("src/main/filesForTask1");
-
-    Task1Controller task1Controller = new Task1Controller();
-    Task2Controller task2Controller;
+    Task2Controller task2Contr;
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        req.setAttribute("folder1", folder1);
-        req.setAttribute("folder2", folder2.listFiles());
+        String action = req.getAttribute("action").toString();
 
-        req.getRequestDispatcher("index.jsp").forward(req, resp);
+        if (action.equals("search")) {
+            String input = req.getAttribute("input").toString();
+            task2Contr = new Task2Controller(input);
+
+        } else {
+
+        }
+        req.setAttribute("folder1", folder1.list());
+        req.setAttribute("folder2", folder2.list());
+
+        req.getRequestDispatcher("home.jsp").forward(req, resp);
     }
 
     @Override
     protected void doPut(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        req.setAttribute("folder1", folder1);
-        req.setAttribute("folder2", folder2.listFiles());
 
-        req.getRequestDispatcher("index.jsp").forward(req, resp);
     }
-
 
 
 }

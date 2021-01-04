@@ -1,7 +1,5 @@
 package task2;
 
-import comparators.CountComparator;
-
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Objects;
@@ -12,26 +10,30 @@ public class Task2Controller {
     private final File folder2 = new File("src/main/filesForTask2");
     private final ExecutorService executor = Executors.newCachedThreadPool();
 
-    private final ArrayList<Item> items;
+    private ArrayList<Item> items;
     private final String input;
 
 
     public Task2Controller(String input) {
         this.input = input;
-        items = new ArrayList<>();
-    }
-
-    public File getFolder2() {
-        return folder2;
     }
 
     public void start() {
+        setItems();
+        startThread();
+
+        if (executor.isShutdown()) {
+            for (Item item : items) {
+                System.out.println(item.getFile().getName() + " have count " + item.getCount());
+            }
+        }
+
+    }
+
+    public void setItems() {
+        items = new ArrayList<>();
         for (File file : Objects.requireNonNull(folder2.listFiles())) {
             items.add(new Item(file));
-        }
-        startThread();
-        if (executor.isShutdown()) {
-            sort();
         }
     }
 
@@ -39,9 +41,7 @@ public class Task2Controller {
         for (Item item : items) {
             executor.execute(new Search(item, input));
         }
-        if (!executor.isTerminated()) {
-            executor.shutdownNow();
-        }
+        executor.shutdown();
     }
 
     private void sort() {

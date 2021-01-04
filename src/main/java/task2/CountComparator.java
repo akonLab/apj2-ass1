@@ -1,6 +1,5 @@
-package comparators;
+package task2;
 
-import task2.Item;
 
 import java.util.Comparator;
 

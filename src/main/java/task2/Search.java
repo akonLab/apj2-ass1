@@ -7,7 +7,7 @@ import java.util.HashMap;
 
 public class Search extends Thread {
     private HashMap<String, Integer> countWordsFromPhrase = null;
-    private Item item = null;
+    private final Item item;
     private final String input;
 
     public Search(Item item, String input) {
@@ -16,10 +16,11 @@ public class Search extends Thread {
     }
 
     @Override
-    public void run() {
-        if (item.getFile().getName().substring(item.getFile().getName().lastIndexOf('.') + 1).equals("txt")) {//if txt
+    public synchronized void run() {
+        if (item.getFile().getName().substring(item.getFile().getName().lastIndexOf('.')+1).equals("txt")) {//if txt
             item.setCountWordsFromPhrase(searchWordsFromInput());
             item.setCount(searchStringInText(input) + searchFileName() + sumValues());
+
             System.out.println(item.getFile().getName() + countWordsFromPhrase);
             System.out.println(item.getCount());
         } else {
@@ -50,13 +51,16 @@ public class Search extends Thread {
         }
 
         String[] inputWords = findAllWordsInPhrase(input);
-        String[] fileNameWords;
 
+        /*
         if (item.getFile().getName().contains(".")) {
             fileNameWords = findAllWordsInPhrase(item.getFile().getName().substring(0, item.getFile().getName().lastIndexOf('.')));
         } else {
             fileNameWords = findAllWordsInPhrase(item.getFile().getName());
         }
+*/
+
+        String[] fileNameWords = findAllWordsInPhrase((item.getFile().getName().contains(".")) ? item.getFile().getName().substring(0, item.getFile().getName().lastIndexOf('.')) : item.getFile().getName());
 
         //search the input with file name by part
         if (inputWords.length > 1) {

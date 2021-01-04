@@ -1,6 +1,5 @@
 package task1;
 
-
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Objects;
@@ -12,10 +11,6 @@ public class Task1Controller {
     private final File folder1 = new File("src/main/filesForTask1");
     private String nums = "";
     private final ExecutorService executor = Executors.newCachedThreadPool();
-
-    public File getFolder1() {
-        return folder1;
-    }
 
     public Task1Controller() {
         makeNumStr();
@@ -32,6 +27,7 @@ public class Task1Controller {
             nums += count + " ";
             count++;
         }
+        System.out.println(nums);
     }
 
     private void check() {
@@ -69,5 +65,8 @@ public class Task1Controller {
             new Rename(files.get(0), Integer.parseInt(nums.trim()));
         }
     }
-}
 
+    public File getFolder1() {
+        return folder1;
+    }
+}

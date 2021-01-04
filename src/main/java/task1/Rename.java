@@ -2,7 +2,7 @@ package task1;
 
 import java.io.File;
 
-public class Rename implements Runnable {
+public class Rename extends Task1Controller implements Runnable {
     private final Integer count;
     private final File file;
 
@@ -13,11 +13,6 @@ public class Rename implements Runnable {
 
     @Override
     public void run() {
-        rename();
-    }
-
-    public void rename() {
-        // item.getFile().getPath().replace(item.getFile().getName(),count);
         String format = file.getName().substring(file.getName().lastIndexOf("."));
 
         if (file.renameTo(new File(file.getParentFile().getPath() + "/" + count + format))) {
